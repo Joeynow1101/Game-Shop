@@ -37,10 +37,7 @@ export default function ShopForm({ onAddProduct }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (productValid(product)) {
-      //   setProducts([...products, product]);
       onAddProduct({ id: uuidv4(), ...product });
-
-      // setProduct(initialProduct);
       setHasFormErrors(false);
     } else {
       setHasFormErrors(true);
@@ -142,7 +139,7 @@ const Form = styled.form`
   justify-content: center;
   margin: 2rem;
   width: 90%;
-  xbackground-color: #ba9d9d;
+  
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16.5px);
   -webkit-backdrop-filter: blur(16.5px);

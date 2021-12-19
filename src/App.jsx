@@ -57,6 +57,7 @@ function App() {
         {products.map((product, index) => (
           <article key={index}>
             Name:{product.name}
+            <br />
             Status:{product.status}
             <br />
             Price:{product.price} €<br />
@@ -86,8 +87,8 @@ const Container = styled.div`
 
 const Output = styled.div`
   position: relative;
-  width: 30rem;
-  padding: 3rem;
+  width: 70%;
+  padding: 2rem;
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16.5px);
   -webkit-backdrop-filter: blur(16.5px);
@@ -98,5 +99,8 @@ const Output = styled.div`
 
 const Favourite = styled.span`
   position: absolute;
-  right: 10px;
+  right: 15px;
+  margin-top: -4rem;
+  cursor: pointer;
+  
 `;
