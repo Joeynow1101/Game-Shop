@@ -1,6 +1,6 @@
 import Select from "./Select";
 import RadioButton from "./RadioButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import productValid from "./lib/validation";
 import CheckBox from "./CheckBox";
@@ -20,6 +20,15 @@ export default function ShopForm({ onAddProduct }) {
   };
   const [product, setProduct] = useState(initialProduct);
   const [hasFormErrors, setHasFormErrors] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  const fetchCategories = async () => {
+    const response = await fetch("http://localhost:4000/categories");
+    const data = await response.json();
+    setCategories(data);
+  };
+
+  useEffect(() => fetchCategories(), []);
 
   // const [tags, setProducts] = useState(["ONE", "TWO"]);
   function updateTags(tag) {
@@ -56,7 +65,7 @@ export default function ShopForm({ onAddProduct }) {
       [event.target.name]: inputValue,
     });
   };
-  const platform = ["Playstation", "XBox", "PC", "Nintendo Switch"];
+  // const platform = ["Playstation", "XBox", "PC", "Nintendo Switch"];
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -94,9 +103,9 @@ export default function ShopForm({ onAddProduct }) {
       </Code>
 
       <Select
-        name="platform"
-        value={product.platform}
-        options={platform}
+        name="categories"
+        value={categories.platform}
+        options={categories}
         onSelectChange={handleChange}
       >
         <h2>Platform</h2>
@@ -139,7 +148,7 @@ const Form = styled.form`
   justify-content: center;
   margin: 2rem;
   width: 90%;
-  
+
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(16.5px);
   -webkit-backdrop-filter: blur(16.5px);
